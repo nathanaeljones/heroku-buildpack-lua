@@ -54,7 +54,7 @@ fi
 
 $LUA "$OPT_DIR/prepare.lua" $ROCKSPEC $OPT_DIR 2>&1 | indent
 
-status "Modify environment variables in .profile.d"
+echo "Modify environment variables in .profile.d"
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\"\$HOME/bin:\$HOME/usr/local/bin:/usr/bin:/bin\$PATH\";\n" >> $BUILD_DIR/.profile.d/lua.sh
 echo "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";\n" >> $BUILD_DIR/.profile.d/lua.sh
