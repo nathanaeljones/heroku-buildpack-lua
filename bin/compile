@@ -60,6 +60,6 @@ echo "export PATH=\"\$HOME/bin:\$HOME/usr/local/bin:/usr/bin:/bin\$PATH\";\n" >>
 echo "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";\n" >> $BUILD_DIR/.profile.d/lua.sh
 echo "export LUA_CPATH=\"./?.so;\$HOME/packages/lib/lua/5.1/?.so\";\n" >> $BUILD_DIR/.profile.d/lua.sh
 echo "export LUA_PATH=\"./?.lua;\$HOME/packages/share/lua/5.1/?.lua;\$HOME/packages/share/lua/5.1/?/init.lua\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-
+cp $BUILD_DIR/.profile.d/lua.sh $BUILD_DIR/export
 
 
