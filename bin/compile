@@ -54,13 +54,19 @@ fi
 
 $LUA "$OPT_DIR/prepare.lua" $ROCKSPEC $OPT_DIR 2>&1 | indent
 
-echo "Adding environment variables in .profile.d, and exporting to $BIN_DIR/../export"
+echo "Adding environment variables in .profile.d for later use by dyno"
 mkdir -p $BUILD_DIR/.profile.d
-echo -e "export PATH=\"\$HOME/bin:\$HOME/usr/local/bin:/usr/bin:/bin\$PATH\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo -e "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo -e "export LUA_CPATH=\"./?.so;\$HOME/packages/lib/lua/5.1/?.so\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo -e "export LUA_PATH=\"./?.lua;\$HOME/packages/share/lua/5.1/?.lua;\$HOME/packages/share/lua/5.1/?/init.lua\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-cp $BUILD_DIR/.profile.d/lua.sh $BIN_DIR/../export
-cat $BIN_DIR/../export
+echo "export PATH=\"\$HOME/bin:/usr/local/bin:/usr/bin:/bin\$PATH\";" >> $BUILD_DIR/.profile.d/lua.sh
+echo "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";" >> $BUILD_DIR/.profile.d/lua.sh
+echo "export LUA_CPATH=\"./?.so;\$HOME/packages/lib/lua/5.1/?.so\";" >> $BUILD_DIR/.profile.d/lua.sh
+echo "export LUA_PATH=\"./?.lua;\$HOME/packages/share/lua/5.1/?.lua;\$HOME/packages/share/lua/5.1/?/init.lua\";" >> $BUILD_DIR/.profile.d/lua.sh
+cat $BUILD_DIR/.profile.d/lua.sh
+echo "Exporting environment variables to $BIN_DIR/../export for use by subsequent buildpacks"
+echo "export PATH=\"\$BUILD_DIR/bin:/usr/local/bin:/usr/bin:/bin\$PATH\";" >> $BIN_DIR/../export
+echo "export LD_LIBRARY_PATH=\"\$BUILD_DIR/packages/lib\";" >> $BIN_DIR/../export
+echo "export LUA_CPATH=\"./?.so;\$BUILD_DIR/packages/lib/lua/5.1/?.so\";" >> $BIN_DIR/../export
+echo "export LUA_PATH=\"./?.lua;\$BUILD_DIR/packages/share/lua/5.1/?.lua;\$BUILD_DIR/packages/share/lua/5.1/?/init.lua\";" >> $BIN_DIR/../export
+
+
 
 
