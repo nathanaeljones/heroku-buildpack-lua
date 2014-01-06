@@ -26,12 +26,21 @@ mkdir -p $BUILD_DIR/packages
 mkdir tmp
 
 echo "-----> Downloading and unpacking Lua"
-cd tmp && wget http://www.lua.org/ftp/lua-5.1.4.tar.gz && tar xzvf lua-5.1.4.tar.gz
+cd tmp && curl -O http://www.lua.org/ftp/lua-5.1.4.tar.gz && tar xzvf lua-5.1.4.tar.gz
 echo "-----> Building Lua"
 cd lua-5.1.4 && make linux
 echo "-----> Copying lua to /bin"
 cp src/liblua.a $OPT_DIR/../lib/
 cp src/lua $BUILD_DIR/bin/
+echo "-----> Downloading pluto"
+git clone https://github.com/nathanaeljones/pluto.git pluto
+cd pluto
+echo "-----> Building pluto"
+make linux
+ls pluto.*
+cp pluto.so $BUILD_DIR/packages/lib/lua/5.1/pluto.so
+
+
 
 cd $BUILD_DIR
 
