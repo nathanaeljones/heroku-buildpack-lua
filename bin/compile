@@ -56,10 +56,10 @@ $LUA "$OPT_DIR/prepare.lua" $ROCKSPEC $OPT_DIR 2>&1 | indent
 
 echo "Adding environment variables in .profile.d, and exporting to $BIN_DIR/../export"
 mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$HOME/bin:\$HOME/usr/local/bin:/usr/bin:/bin\$PATH\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo "export LUA_CPATH=\"./?.so;\$HOME/packages/lib/lua/5.1/?.so\";\n" >> $BUILD_DIR/.profile.d/lua.sh
-echo "export LUA_PATH=\"./?.lua;\$HOME/packages/share/lua/5.1/?.lua;\$HOME/packages/share/lua/5.1/?/init.lua\";\n" >> $BUILD_DIR/.profile.d/lua.sh
+echo -e "export PATH=\"\$HOME/bin:\$HOME/usr/local/bin:/usr/bin:/bin\$PATH\";\n" >> $BUILD_DIR/.profile.d/lua.sh
+echo -e "export LD_LIBRARY_PATH=\"\$HOME/packages/lib\";\n" >> $BUILD_DIR/.profile.d/lua.sh
+echo -e "export LUA_CPATH=\"./?.so;\$HOME/packages/lib/lua/5.1/?.so\";\n" >> $BUILD_DIR/.profile.d/lua.sh
+echo -e "export LUA_PATH=\"./?.lua;\$HOME/packages/share/lua/5.1/?.lua;\$HOME/packages/share/lua/5.1/?/init.lua\";\n" >> $BUILD_DIR/.profile.d/lua.sh
 cp $BUILD_DIR/.profile.d/lua.sh $BIN_DIR/../export
 cat $BIN_DIR/../export
 
