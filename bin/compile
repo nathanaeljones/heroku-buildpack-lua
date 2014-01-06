@@ -32,6 +32,9 @@ cd lua-5.1.4 && make linux
 echo "-----> Copying lua to /bin"
 cp src/liblua.a $OPT_DIR/../lib/
 cp src/lua $BUILD_DIR/bin/
+
+PATH=$(pwd)/src:$PATH
+
 echo "-----> Downloading pluto"
 git clone https://github.com/nathanaeljones/pluto.git pluto
 cd pluto
