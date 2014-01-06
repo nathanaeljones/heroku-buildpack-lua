@@ -20,10 +20,20 @@ OPT_DIR=$(cd "$BIN_DIR/../opt"; pwd)
 
 LUA=lua
 
-cd $BUILD_DIR
+mkdir -p $BUILD_DIR/bin
+mkdir -p $BUILD_DIR/packages
 
-mkdir -p bin
-mkdir -p packages
+mkdir tmp
+
+echo "-----> Downloading and unpacking Lua"
+cd tmp && wget http://www.lua.org/ftp/lua-5.1.4.tar.gz && tar xzvf lua-5.1.4.tar.gz
+echo "-----> Building Lua"
+cd lua-5.1.4 && make linux
+echo "-----> Copying lua to /bin"
+cp src/liblua.a $OPT_DIR/../lib/
+cp src/lua $BUILD_DIR/bin/
+
+cd $BUILD_DIR
 
 echo "-----> Copying lua to bin"
 cp "$OPT_DIR/lua" "bin/"
